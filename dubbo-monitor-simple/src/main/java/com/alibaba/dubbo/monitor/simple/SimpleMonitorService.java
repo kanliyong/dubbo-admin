@@ -385,8 +385,13 @@ public class SimpleMonitorService implements MonitorService {
         collect(statistics);
     }
 
+    private ClickHouseQueneMonitorService service = new ClickHouseQueneMonitorService();
+
     public void collect(URL statistics) {
         queue.offer(statistics);
+
+        service.collect(statistics);
+
         if (logger.isInfoEnabled()) {
             logger.info("collect statistics: " + statistics);
         }
